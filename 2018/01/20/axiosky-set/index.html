@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>vue中axios解决跨域问题 | runlan.zhu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="axios解决跨域问题">
+<meta name="keywords" content="axios,js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue中axios解决跨域问题">
+<meta property="og:url" content="http://yoursite.com/2018/01/20/axiosky-set/index.html">
+<meta property="og:site_name" content="runlan.zhu">
+<meta property="og:description" content="axios解决跨域问题">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-02T06:41:55.321Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue中axios解决跨域问题">
+<meta name="twitter:description" content="axios解决跨域问题">
+  
+    <link rel="alternate" href="/atom.xml" title="runlan.zhu" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/plugin/bganimation/bg.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://avatars1.githubusercontent.com/u/33336952?s=460&amp;amp;v=4">
+    <h2 class="author">runlan.zhu</h2>
+    <h3 class="description">沐阳</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>8</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>5</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>8</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-axiosky-set" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/20/axiosky-set/" class="article-date">
+  <time class="post-time" datetime="2018-01-20T03:36:08.000Z" itemprop="datePublished">
+    <span class="post-month">1月</span><br>
+    <span class="post-day">20</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      vue中axios解决跨域问题
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/axios/">axios</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-vue中axios不支持vue-use-方式声明使用。-所以有两种方法可以解决这点："><a href="#1-vue中axios不支持vue-use-方式声明使用。-所以有两种方法可以解决这点：" class="headerlink" title="1.vue中axios不支持vue.use()方式声明使用。 所以有两种方法可以解决这点："></a>1.vue中axios不支持vue.use()方式声明使用。 所以有两种方法可以解决这点：</h2><p>第一种： 在main.js中引入axios，然后将其设置为vue原型链上的属性，这样在组件中就可以直接 this.axios使用了<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span>;</span><br><span class="line">Vue.prototype.axios=axios;</span><br></pre></td></tr></table></figure></p>
+<p>components：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.axios(&#123;</span><br><span class="line">        url:<span class="string">"a.xxx"</span>,</span><br><span class="line">        method:<span class="string">'post'</span>,</span><br><span class="line">        data:&#123;</span><br><span class="line">            id:<span class="number">3</span>,</span><br><span class="line">            name:<span class="string">'jack'</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(res);</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(err);</span><br><span class="line">    &#125;)</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="这里需要注意一点，就是在axios中把请求到的数据-使用this复制给data是无效的，使用箭头函数可以解决。"><a href="#这里需要注意一点，就是在axios中把请求到的数据-使用this复制给data是无效的，使用箭头函数可以解决。" class="headerlink" title="这里需要注意一点，就是在axios中把请求到的数据 使用this复制给data是无效的，使用箭头函数可以解决。"></a>这里需要注意一点，就是在axios中把请求到的数据 使用this复制给data是无效的，使用箭头函数可以解决。</h3><p>(1).vue cli脚手架前端调后端数据接口时候的本地代理跨域问题，如我在本地localhost访问接口<a href="http://10.1.5.11:8080/xxx/duty?time=2017-07-07" target="_blank" rel="noopener">http://10.1.5.11:8080/xxx/duty?time=2017-07-07</a> 14:57:22’，是要跨域的才可以访问的，如果直接访问会报 XMLHTTPRequest can not load <a href="http://10.1.5.11:8080/xxx/duty?time=2017-07-07" target="_blank" rel="noopener">http://10.1.5.11:8080/xxx/duty?time=2017-07-07</a> 14:57:22’. Response to preflight request doesn’t pass access control….<br>为什么存在跨域问题？因为这是非同源互相通讯，具体可以自己去google了解，这里只需要在webpack配置一下proxyTable就OK了，在config中找到index.js如下 ：</p>
+<p>config/index.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">dev: &#123;</span><br><span class="line">    proxyTable: &#123;</span><br><span class="line">      <span class="string">'/api'</span>: &#123;</span><br><span class="line">        target: <span class="string">'http://10.1.5.11:8080/'</span>,<span class="comment">//设置你调用的接口域名和端口号</span></span><br><span class="line">        changeOrigin: <span class="literal">true</span>,     <span class="comment">//跨域</span></span><br><span class="line">        pathRewrite: &#123;</span><br><span class="line">          <span class="string">'^/api'</span>: <span class="string">'/'</span>          <span class="comment">//这里理解成用‘/api’代替target里面的地址，后面组件中我们掉接口时直接用api代替 比如我要调用'http://10.1.5.11:8080/xxx/duty?time=2017-07-07 14:57:22'，直接写‘/api/xxx/duty?time=2017-07-07 14:57:22’即可</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure></p>
+<p>跨域成功，但是这只是开发环境（dev）中解决了跨域问题，生产环境中真正部署到服务器上如果是非同源还是存在跨域问题，<br>如我们部署的服务器端口是3001，需要前后端联调，第一步前端我们可以分生产production和开发development两种环境分别测试，<br>在config/dev.env.js和prod.env.js里也就是开发/生产环境下分别配置一下请求的地址API_HOST，<br>开发环境中我们用上面配置的代理地址api，生产环境下用正常的接口地址，所以这样配置，<br>分别在config/dev.env.js和prod.env.js两个文件中进行以下配置。</p>
+<p>config/dev.env.js：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = merge(prodEnv, &#123;</span><br><span class="line">  NODE_ENV: <span class="string">'"development"'</span>,<span class="comment">//开发环境</span></span><br><span class="line">  API_HOST:<span class="string">"/api/"</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>prod.env.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  NODE_ENV: <span class="string">'"production"'</span>,<span class="comment">//生产环境</span></span><br><span class="line">  API_HOST:<span class="string">'"http://10.1.5.11:8080/"'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当然不管是开发还是生产环境都可以直接请求<a href="http://10.1.5.11:8080//。" target="_blank" rel="noopener">http://10.1.5.11:8080//。</a><br>配置好之后测试时程序会自动判断当前是开发还是生产环境，然后自动匹配API_HOST，<br>我们在任何组件里都能用process.env.API_HOST来使用地址如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">instance.post(process.env.API_HOST+<span class="string">'user/login'</span>, <span class="keyword">this</span>.form)</span><br></pre></td></tr></table></figure>
+<p>然后第二步后端服务器配置一下cros跨域即可，就是access-control-allow-origin：*允许所有访问的意思。<br>综上：开发的环境下我们前端可以自己配置个proxy代理就能跨域了，真正的生产环境下还需要后端的配合的。某大神说：<br>此方法ie9及以下不好使，如果需要兼容，最好的办法是后端在服务器端口加个代理，效果类似开发时webpack的代理。</p>
+<p>1.axios发送get post请求问题<br>发送post请求时一般都要设置Content-Type，发送内容的类型，application/json指发送json对象但是要提前stringify一下。<br>application/xxxx-form指发送？a=b&amp;c=d格式，<br>可以用qs的方法格式化一下，qs在安装axios后会自动安装，只需要组件里import一下即可。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> postData=<span class="built_in">JSON</span>.stringify(<span class="keyword">this</span>.formCustomer);</span><br><span class="line"><span class="string">'Content-Type'</span>:<span class="string">'application/json'</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> postData=Qs.stringify(<span class="keyword">this</span>.formCustomer);<span class="comment">//过滤成？&amp;=格式</span></span><br><span class="line"><span class="string">'Content-Type'</span>:<span class="string">'application/xxxx-form'</span>&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/01/20/axiosky-set/" data-id="cjw0qnibj0002r8rj91lq1aoz" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/axios/">axios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/05/18/WeChatAppletWeb1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          小程序开发总结文档
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/18/axios-set/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">axios拦截器配置</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">runlan.zhu</h1>
+    <h2 class="blog-subtitle">岁月静好，一半风里飞扬，一半沐浴阳光</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://avatars1.githubusercontent.com/u/33336952?s=460&amp;amp;v=4">
+    <h2 class="author">runlan.zhu</h2>
+    <h3 class="description">沐阳</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>8</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>5</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>8</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://zhurunlan.github.io/" target="_blank" title="Github">
+          Github
+        </a>
+      
+        <a class="hvr-bounce-in" href="https://www.jianshu.com/u/12040c158e97" target="_blank" title="简书">
+          简书
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://blog.shanamaid.top/" target="_blank" title="ShanaMaid">
+          ShanaMaid
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2018 - 2019 runlan.zhu<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+        |<script src="http://s11.cnzz.com/z_stat.php?id=123456789&web_id=123456789" language="JavaScript"></script>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  <link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+  <script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+  <link rel="stylesheet" href="/plugin/galmenu/GalMenu.css">
+  <script src="/plugin/galmenu/GalMenu.js"></script>
+  <div class="GalMenu GalDropDown">
+      <div class="circle" id="gal">
+        <div class="ring">
+          
+            <a href="/" title class="menuItem">首页</a>
+          
+            <a href="/tags" title class="menuItem">标签</a>
+          
+            <a href="/categories" title class="menuItem">分类</a>
+          
+            <a href="/archives" title class="menuItem">归档</a>
+          
+            <a href="/xxxxxxxxx" title class="menuItem">xxx</a>
+          
+            <a href="/xxxxxxx" title class="menuItem">xxxx</a>
+          
+        </div>
+        
+          <audio id="audio" src="#"></audio>
+        
+      </div> 
+</div>
+<div id="overlay" style="opacity: 1; cursor: pointer;"></div>
+  <script type="text/javascript">var items = document.querySelectorAll('.menuItem');
+    for (var i = 0,
+    l = items.length; i < l; i++) {
+      items[i].style.left = (50 - 35 * Math.cos( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
+      items[i].style.top = (50 + 35 * Math.sin( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
+    }</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').GalMenu({
+      'menu': 'GalDropDown'
+    })
+  });
+</script>
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>小程序开发总结文档 | runlan.zhu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="小程序项目开发总结文档">
+<meta name="keywords" content="小程序,javascript,css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小程序开发总结文档">
+<meta property="og:url" content="http://yoursite.com/2018/05/18/WeChatAppletWeb1/index.html">
+<meta property="og:site_name" content="runlan.zhu">
+<meta property="og:description" content="小程序项目开发总结文档">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-12T09:25:56.896Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="小程序开发总结文档">
+<meta name="twitter:description" content="小程序项目开发总结文档">
+  
+    <link rel="alternate" href="/atom.xml" title="runlan.zhu" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/plugin/bganimation/bg.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <div class="outer">
+        <div class="widget-wrap mobile-header">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://avatars1.githubusercontent.com/u/33336952?s=460&amp;amp;v=4">
+    <h2 class="author">runlan.zhu</h2>
+    <h3 class="description">沐阳</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>8</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>5</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>8</strong><br>标签</div></a>
+    </div>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+        <section id="main"><article id="post-WeChatAppletWeb1" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/05/18/WeChatAppletWeb1/" class="article-date">
+  <time class="post-time" datetime="2018-05-18T07:36:06.000Z" itemprop="datePublished">
+    <span class="post-month">5月</span><br>
+    <span class="post-day">18</span>
+  </time>
+</a>
+   
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      小程序开发总结文档
+    </h1>
+  
+
+        <div>
+          
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/小程序/">小程序</a>
+  </div>
+
+          
+              
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-配置"><a href="#1-配置" class="headerlink" title="1.配置"></a>1.配置</h2><ul>
+<li>1.1<a href="https://developers.weixin.qq.com/miniprogram/dev/framework/config.html" target="_blank" rel="noopener">小程序配置</a> </li>
+<li><p>1.2    app.json 是对当前小程序的全局配置，包括了小程序的所有页面路径、界面表现、网络超时时间、底部 tab 等。QuickStart 项目里边的 app.json 配置内容如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"pages"</span>: [</span><br><span class="line">    <span class="string">"pages/index/index"</span>,</span><br><span class="line">    <span class="string">"pages/logs/index"</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"window"</span>: &#123;</span><br><span class="line"><span class="string">"navigationBarBackgroundColor"</span>: <span class="string">"#ffffff"</span>,</span><br><span class="line">    <span class="string">"navigationBarTextStyle"</span>: <span class="string">"black"</span>,</span><br><span class="line">    <span class="string">"navigationBarTitleText"</span>: <span class="string">"微信接口功能演示"</span>,</span><br><span class="line">    <span class="string">"backgroundColor"</span>: <span class="string">"#eeeeee"</span>,</span><br><span class="line">    <span class="string">"backgroundTextStyle"</span>: <span class="string">"light"</span></span><br><span class="line"></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"tabBar"</span>: &#123;</span><br><span class="line">    <span class="string">"list"</span>: [&#123;</span><br><span class="line">      <span class="string">"pagePath"</span>: <span class="string">"pages/index/index"</span>,</span><br><span class="line">      <span class="string">"text"</span>: <span class="string">"首页"</span></span><br><span class="line">    &#125;, &#123;</span><br><span class="line">      <span class="string">"pagePath"</span>: <span class="string">"pages/logs/logs"</span>,</span><br><span class="line">      <span class="string">"text"</span>: <span class="string">"日志"</span></span><br><span class="line">    &#125;]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"networkTimeout"</span>: &#123;</span><br><span class="line">    <span class="string">"request"</span>: <span class="number">10000</span>,</span><br><span class="line">    <span class="string">"downloadFile"</span>: <span class="number">10000</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">"debug"</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>tabBar：设置底部 tab 的表现2-5个</p>
+</li>
+<li>navigationBarTextStyle  导航栏标题颜色，仅支持 black/white</li>
+</ul>
+<h3 id="3-页面路由"><a href="#3-页面路由" class="headerlink" title="3.页面路由"></a>3.页面路由</h3><ul>
+<li>3.1    navigateTo, redirectTo 只能打开非 tabBar 页面。</li>
+<li>3.2    switchTab 只能打开 tabBar 页面。</li>
+<li>3.3    reLaunch 可以打开任意页面。</li>
+<li>3.4    页面底部的 tabBar 由页面决定，即只要是定义为 tabBar 的页面，底部都有 tabBar。</li>
+<li>3.5    调用页面路由带的参数可以在目标页面的onLoad中获取。<h3 id="4-开发和测试"><a href="#4-开发和测试" class="headerlink" title="4.开发和测试"></a>4.开发和测试</h3></li>
+<li>4.1    可以使用体验版进行研发和测试，及时更新代码和体验最新版本，后台要有一定权限才能体验<h3 id="5-生命周期函数"><a href="#5-生命周期函数" class="headerlink" title="5.生命周期函数"></a>5.生命周期函数</h3></li>
+<li>5.1 onLoad   Function    生命周期函数–监听页面加载</li>
+<li>onReady    Function    生命周期函数–监听页面初次渲染完成</li>
+<li>onShow    Function    生命周期函数–监听页面显示</li>
+<li>onHide    Function    生命周期函数–监听页面隐藏</li>
+<li>onUnload    Function    生命周期函数–监听页面卸载   </li>
+<li>onPullDownRefresh    Function    页面相关事件处理函数–监听用户下拉动作</li>
+<li>onPageNotFound  Function 页面相关事件未找到页面</li>
+<li>拓展1<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">onUnload:<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> pages = getCurrentPages();</span><br><span class="line">        <span class="keyword">let</span> currPage = pages[pages.length - <span class="number">1</span>];   <span class="comment">//当前页面</span></span><br><span class="line">        <span class="keyword">let</span> prevPage = pages[pages.length - <span class="number">2</span>];  <span class="comment">//上一个页面</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">//直接调用上一个页面的setData()方法，把数据存到上一个页面中去</span></span><br><span class="line">        prevPage.setData(&#123;</span><br><span class="line">          returnsetdata: <span class="string">'verifyreturn'</span></span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="6-image媒体组件"><a href="#6-image媒体组件" class="headerlink" title="6.    image媒体组件"></a>6.    image媒体组件</h3><ul>
+<li>6.1    mode 有 13 种模式，其中 4 种是缩放模式，9 种是裁剪模式。</li>
+<li>6.2    缩放    scaleToFill    不保持纵横比缩放图片，使图片的宽高完全拉伸至填满 image 元素</li>
+<li>6.3    缩放    aspectFit    保持纵横比缩放图片，使图片的长边能完全显示出来。也就是说，可以完整地将图片显示出来。</li>
+<li>6.4    缩放    aspectFill    保持纵横比缩放图片，只保证图片的短边能完全显示出来。也就是说，图片通常只在水平或垂直方向是完整的，另一个方向将会发生截取。</li>
+<li>6.5    缩放    widthFix    宽度不变，高度自动变化，保持原图宽高比不变</li>
+<li>6.6    裁剪    top    不缩放图片，只显示图片的顶部区域</li>
+<li>6.7    裁剪    bottom    不缩放图片，只显示图片的底部区域</li>
+<li>6.8    裁剪    center    不缩放图片，只显示图片的中间区域…</li>
+</ul>
+<h3 id="7-地图map"><a href="#7-地图map" class="headerlink" title="7.    地图map"></a>7.    地图map</h3><ul>
+<li>7.1    longitude    Number        中心经度    </li>
+<li>latitude    Number        中心纬度    </li>
+<li>scale    Number    16    缩放级别，取值范围为5-18    </li>
+<li>markers    Array        标记点    </li>
+<li>covers    Array        即将移除，请使用 markers    </li>
+<li>polyline    Array        路线    </li>
+<li>circles    Array        圆    </li>
+<li>controls    Array        控件    </li>
+<li>include-points    Array        缩放视野以包含所有给定的坐标点    </li>
+<li>show-location    Boolean        显示带有方向的当前定位点    </li>
+<li>bindmarkertap    EventHandle        点击标记点时触发，会返回marker的id    </li>
+<li>bindcallouttap    EventHandle        点击标记点对应的气泡时触发，会返回marker的id    1.2.0</li>
+<li>bindcontroltap    EventHandle        点击控件时触发，会返回control的id    </li>
+<li>bindregionchange    EventHandle        视野发生变化时触发    </li>
+<li>bindtap    EventHandle        点击地图时触发</li>
+<li>导航拓展<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">gotolocation: <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">   <span class="keyword">let</span> lat=e.currentTarget.dataset.lat;</span><br><span class="line">   <span class="keyword">let</span> lng=e.currentTarget.dataset.lng;</span><br><span class="line">   <span class="keyword">let</span> name=e.currentTarget.dataset.name;</span><br><span class="line">   <span class="keyword">let</span> address=e.currentTarget.dataset.address;</span><br><span class="line">    wx.openLocation(&#123;  </span><br><span class="line">      latitude: <span class="built_in">parseFloat</span>(lat),  </span><br><span class="line">      longitude: <span class="built_in">parseFloat</span>(lng),  </span><br><span class="line">      scale: <span class="number">18</span>,  </span><br><span class="line">      name: name,  </span><br><span class="line">      address:address </span><br><span class="line">    &#125;)  </span><br><span class="line">    &#125;,</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="8-分享"><a href="#8-分享" class="headerlink" title="8.分享"></a>8.分享</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">'share-btn'</span> <span class="attr">open-type</span>=<span class="string">'share'</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">onShareAppMessage: <span class="function"><span class="keyword">function</span> (<span class="params">ops</span>) </span>&#123;</span><br><span class="line">     <span class="keyword">let</span> houseid=<span class="keyword">this</span>.data.houseid;</span><br><span class="line">     <span class="keyword">if</span> (ops.from === <span class="string">'button'</span>) &#123;</span><br><span class="line">       <span class="comment">// 来自页面内转发按钮</span></span><br><span class="line">       <span class="built_in">console</span>.log(ops.target)</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> &#123;</span><br><span class="line">       title: <span class="string">'烦租客'</span>,</span><br><span class="line">       path: <span class="string">'pages/index/housedesc/housedesc?id='</span>+houseid,</span><br><span class="line">       success: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">         <span class="comment">// 转发成功</span></span><br><span class="line">         <span class="built_in">console</span>.log(<span class="string">"转发成功:"</span> + <span class="built_in">JSON</span>.stringify(res));</span><br><span class="line">       &#125;,</span><br><span class="line">       fail: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">         <span class="comment">// 转发失败</span></span><br><span class="line">         <span class="built_in">console</span>.log(<span class="string">"转发失败:"</span> + <span class="built_in">JSON</span>.stringify(res));</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;</span><br><span class="line">  </span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="8-获取用户信息"><a href="#8-获取用户信息" class="headerlink" title="8.获取用户信息"></a>8.获取用户信息</h3><ul>
+<li>8.1得到开放平台交钱</li>
+<li>获取用户信息接口优化调整 官方</li>
+<li>微信团队 05月10日 </li>
+<li>8.2获取用户头像昵称，第一次需要使用 button 组件授权，如果已经用组件授权了，wx.getUserInfo 可直接返回用户数据，无需重复授权弹窗。</li>
+<li>8.3. 如果没有用 button 组件授权，wx.getUserInfo 调用接口返回失败，提醒开发者需要先使用 button 组件授权。</li>
+<li><ol start="3">
+<li>用户可在设置中，取消授权。取消授权后需重新用 button 组件拉起授权。</li>
+</ol>
+</li>
+<li><p>此次调整仅会影响开发者工具、体验版和开发版，正式版本小程序暂不受影响</p>
+</li>
+<li>8.4    <a href="https://developers.weixin.qq.com/blogdetail?action=get_post_info&amp;lang=zh_CN&amp;token=&amp;docid=000aee01f98fc0cbd4b6ce43b56c01" target="_blank" rel="noopener">link：</a><h3 id="9-注意安卓和ios兼容"><a href="#9-注意安卓和ios兼容" class="headerlink" title="9.    注意安卓和ios兼容"></a>9.    注意安卓和ios兼容</h3></li>
+<li>9.1 Line-height不兼容处理方法 font-family: miui</li>
+<li>9.2 时间格式安卓和ios兼容加上.replace(/-/g, “/“);</li>
+<li>9.3 然后time=(new Date(timestamp)).getTime();</li>
+<li>9.4 苹果机和魅族的有的对position：absolute兼容不是很好</li>
+<li>9.5 position  fixed  也是 placeholder也会乱</li>
+</ul>
+<h3 id="10-地址定位"><a href="#10-地址定位" class="headerlink" title="10.地址定位"></a>10.地址定位</h3><ul>
+<li>10.1可以用微信wx.getLocation获取经纬度然后再用腾讯地图小程序api <a href="http://lbs.qq.com/qqmap_wx_jssdk/method-geocoder.html进行转化，必须配置安全域名" target="_blank" rel="noopener">http://lbs.qq.com/qqmap_wx_jssdk/method-geocoder.html进行转化，必须配置安全域名</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/05/18/WeChatAppletWeb1/" data-id="cjw0qnib90000r8rjqvey9cmx" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/小程序/">小程序</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/05/22/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/20/axiosky-set/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">vue中axios解决跨域问题</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <h1 class="blog-title">runlan.zhu</h1>
+    <h2 class="blog-subtitle">岁月静好，一半风里飞扬，一半沐浴阳光</h2>
+    <ul class="blog-link">
+     
+          <a href="/" title="Home">
+            <li>主页</li>
+          </a>
+        
+          <a href="/archives" title="Archives">
+            <li>归档</li>
+          </a>
+        
+          <a href="/categories" title="Categories">
+            <li>分类</li>
+          </a>
+        
+          <a href="/tags" title="Tags">
+            <li>标签</li>
+          </a>
+        
+    </ul>
+  </div>
+</div>
+
+  
+    <div class="widget-wrap">
+  <h3 class="widget-title"></h3>
+  <div class="widget">
+    <img class="avatar" src="https://avatars1.githubusercontent.com/u/33336952?s=460&amp;amp;v=4">
+    <h2 class="author">runlan.zhu</h2>
+    <h3 class="description">沐阳</h3>
+    <div class="count-box">
+      <a href="/archives"><div><strong>8</strong><br>文章</div></a>
+      <a href="/categories"><div><strong>5</strong><br>分类</div></a>
+      <a href="/tags"><div><strong>8</strong><br>标签</div></a>
+    </div>
+
+
+
+    <div class="social-link">
+      
+        <a class="hvr-bounce-in" href="https://zhurunlan.github.io/" target="_blank" title="Github">
+          Github
+        </a>
+      
+        <a class="hvr-bounce-in" href="https://www.jianshu.com/u/12040c158e97" target="_blank" title="简书">
+          简书
+        </a>
+      
+    </div>
+
+    <div class="friend-link">
+      <h2>友情链接</h2>
+      
+        <a class="hvr-bounce-in" href="http://blog.shanamaid.top/" target="_blank" title="ShanaMaid">
+          ShanaMaid
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy;2018 - 2019 runlan.zhu<br>
+      由<a href="http://hexo.io/" target="_blank">Hexo</a>强力驱动 | 
+      主题-<a href="https://github.com/ShanaMaid/hexo-theme-shana">Shana</a>
+      
+        |<script src="http://s11.cnzz.com/z_stat.php?id=123456789&web_id=123456789" language="JavaScript"></script>
+      
+    </div>
+    
+  </div>
+</footer>
+    </div>
+    
+
+<script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/wow/0.1.6/wow.min.js"></script>
+<script>
+new WOW().init();
+</script>   
+
+
+  <link rel="stylesheet" href="/plugin/fancybox/jquery.fancybox.css">
+  <script src="/plugin/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+  <link rel="stylesheet" href="/plugin/galmenu/GalMenu.css">
+  <script src="/plugin/galmenu/GalMenu.js"></script>
+  <div class="GalMenu GalDropDown">
+      <div class="circle" id="gal">
+        <div class="ring">
+          
+            <a href="/" title class="menuItem">首页</a>
+          
+            <a href="/tags" title class="menuItem">标签</a>
+          
+            <a href="/categories" title class="menuItem">分类</a>
+          
+            <a href="/archives" title class="menuItem">归档</a>
+          
+            <a href="/xxxxxxxxx" title class="menuItem">xxx</a>
+          
+            <a href="/xxxxxxx" title class="menuItem">xxxx</a>
+          
+        </div>
+        
+          <audio id="audio" src="#"></audio>
+        
+      </div> 
+</div>
+<div id="overlay" style="opacity: 1; cursor: pointer;"></div>
+  <script type="text/javascript">var items = document.querySelectorAll('.menuItem');
+    for (var i = 0,
+    l = items.length; i < l; i++) {
+      items[i].style.left = (50 - 35 * Math.cos( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%";
+      items[i].style.top = (50 + 35 * Math.sin( - 0.5 * Math.PI - 2 * (1 / l) * i * Math.PI)).toFixed(4) + "%"
+    }</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('body').GalMenu({
+      'menu': 'GalDropDown'
+    })
+  });
+</script>
+
+  <section class="hidden-xs"> 
+  <ul class="cb-slideshow"> 
+    <li><span>苟利</span></li> 
+    <li><span>国家</span></li> 
+    <li><span>生死以</span></li> 
+    <li><span>岂能</span></li> 
+    <li><span>祸福</span></li> 
+    <li><span>趋避之</span></li> 
+  </ul>
+</section>
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
