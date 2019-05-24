@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="runlan.zhu">
 <meta property="og:description" content="axios拦截器配置">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-02T06:31:00.269Z">
+<meta property="og:updated_time" content="2019-05-24T14:17:56.255Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="axios拦截器配置">
 <meta name="twitter:description" content="axios拦截器配置">
@@ -106,6 +106,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="动态Axios配置"><a href="#动态Axios配置" class="headerlink" title="动态Axios配置"></a>动态Axios配置</h2><p>推荐使用Vue-cli工具来创建和管理项目，就算刚开始不熟悉，用着用着便可知晓其中的奥妙。前一段时间官方所推荐的数据请求插件还是Vue-resource，但现在已经变了，变成了Axios,不用知道为什么变了，反正这个用起来比那个好一些，用就是了，下面是一些封装axios请求的一些经验，不对之处，还望多多指教！</p>
+<a id="more"></a>
 <h3 id="01"><a href="#01" class="headerlink" title="01"></a>01</h3><p>创建文件，Vue项目初始化之后，在src目录下再创建一个util工具文件夹，一般就是用来存放一些封装的函数方法，现在让我们在util文件目录下创建一个http.js文件，封装axios方法。</p>
 <h3 id="02"><a href="#02" class="headerlink" title="02"></a>02</h3><p>直接上代码（常规版），代码中有详细的注释<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span> <span class="comment">//引用axios</span></span><br><span class="line"><span class="keyword">import</span> &#123;<span class="built_in">Promise</span>&#125; <span class="keyword">from</span> <span class="string">'es6-promise'</span>   <span class="comment">//引入Promise</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// axios 配置</span></span><br><span class="line">axios.defaults.timeout = <span class="number">5000</span>;  <span class="comment">//设置超时时间</span></span><br><span class="line">axios.defaults.baseURL = <span class="string">'http://localhost:4000/api/v1/'</span>; <span class="comment">//这是调用数据接口</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// http request 拦截器（所有发送的请求都要从这儿过一次），通过这个，我们就可以把token传到后台，我这里是使用sessionStorage来存储token等权限信息和用户信息，若要使用cookie可以自己封装一个函数并import便可使用</span></span><br><span class="line">axios.interceptors.request.use(</span><br><span class="line">    config =&gt; &#123;</span><br><span class="line">        <span class="keyword">const</span> token = sessionStorage.getItem(<span class="string">"token"</span>); <span class="comment">//获取存储在本地的token</span></span><br><span class="line">        config.data = <span class="built_in">JSON</span>.stringify(config.data);</span><br><span class="line">        config.headers = &#123;</span><br><span class="line">            <span class="string">'Content-Type'</span>:<span class="string">'application/json'</span> <span class="comment">//设置跨域头部,虽然很多浏览器默认都是使用json传数据，但咱要考虑IE浏览器。</span></span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">if</span> (token) &#123;</span><br><span class="line">            config.headers.Authorization = <span class="string">"Token "</span> + token; <span class="comment">//携带权限参数</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> config;</span><br><span class="line">    &#125;,</span><br><span class="line">    err =&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(err);</span><br><span class="line">    &#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// http response 拦截器（所有接收到的请求都要从这儿过一次）</span></span><br><span class="line">axios.interceptors.response.use(</span><br><span class="line">    response =&gt; &#123;</span><br><span class="line"><span class="comment">//response.status===401是我和后台约定的权限丢失或者权限不够返回的状态码，这个可以自己和后台约定，约定返回某个自定义字段也是可以的</span></span><br><span class="line">        <span class="keyword">if</span>(response.status == <span class="number">401</span>) &#123;</span><br><span class="line">            router.push(&#123; <span class="comment">//push后面是一个参数对象，可以携带很多参数，具体可以去vue-router上查看，例如query字段表示携带的参数</span></span><br><span class="line">                path: <span class="string">'/login'</span></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> response;</span><br><span class="line">    &#125;,</span><br><span class="line">    error =&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(error.response.data)</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> axios;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * fetch 请求方法</span></span><br><span class="line"><span class="comment"> * @param url</span></span><br><span class="line"><span class="comment"> * @param params</span></span><br><span class="line"><span class="comment"> * @returns &#123;Promise&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">fetch</span>(<span class="params">url, params = &#123;&#125;</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        axios.get(url, &#123;</span><br><span class="line">            params: params</span><br><span class="line">        &#125;)</span><br><span class="line">        .then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">            resolve(response.data);</span><br><span class="line">        &#125;)</span><br><span class="line">        .catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">            reject(err)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * post 请求方法</span></span><br><span class="line"><span class="comment"> * @param url</span></span><br><span class="line"><span class="comment"> * @param data</span></span><br><span class="line"><span class="comment"> * @returns &#123;Promise&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">post</span>(<span class="params">url, data = &#123;&#125;</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        axios.post(url, data)</span><br><span class="line">            .then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">                resolve(response.data);</span><br><span class="line">            &#125;, err =&gt; &#123;</span><br><span class="line">                reject(err);</span><br><span class="line">            &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * patch 方法封装</span></span><br><span class="line"><span class="comment"> * @param url</span></span><br><span class="line"><span class="comment"> * @param data</span></span><br><span class="line"><span class="comment"> * @returns &#123;Promise&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">patch</span>(<span class="params">url, data = &#123;&#125;</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        axios.patch(url, data)</span><br><span class="line">            .then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">                resolve(response.data);</span><br><span class="line">            &#125;, err =&gt; &#123;</span><br><span class="line">                reject(err);</span><br><span class="line">            &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * put 方法封装</span></span><br><span class="line"><span class="comment"> * @param url</span></span><br><span class="line"><span class="comment"> * @param data</span></span><br><span class="line"><span class="comment"> * @returns &#123;Promise&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">put</span>(<span class="params">url, data = &#123;&#125;</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">        axios.put(url, data)</span><br><span class="line">            .then(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">                resolve(response.data);</span><br><span class="line">            &#125;, err =&gt; &#123;</span><br><span class="line">                reject(err);</span><br><span class="line">            &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="03"><a href="#03" class="headerlink" title="03"></a>03</h3><p>（动态版），axios的拦截器不是必要的，不是每个项目都需要，而且headers里面的Content-Type和Authorization不止一种，这时就需要使用另一种方法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">util/http.js</span><br></pre></td></tr></table></figure></p>
@@ -120,7 +121,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/18/axios-set/" data-id="cjw0r7iwf000230rjwtcwmm34" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2018/01/18/axios-set/" data-id="cjw0sb8ak00067orjirh5rgz9" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/axios/">axios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
@@ -153,7 +154,47 @@
 
 
 
-</section>
+
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNjE3MC8xMjcwNQ==">
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+
+      if (typeof LivereTower === 'function') { return; }
+
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+  <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- 页面点击小红心 -->
+<script src="js/tctip-1.0.1.min.js"></script>
+<script type="text/javascript" src="js/clicklove.js"></script>
+<!--打赏功能-->
+<script src="js/tctip-1.0.1.min.js"></script>
+<script>
+  new tctip({
+    top: '20%',
+    button: {
+      id: 9,
+      type: 'dashang',
+    },
+    list: [
+      {
+        type: 'alipay',
+        qrImg: 'img/zhifubao.jpg'
+      }, {
+        type: 'wechat',
+        qrImg: 'img/weixin.png'
+      }
+    ]
+  }).init()
+  var todo = new leanCloud()._getTime('test');
+</script></section>
         
           <aside id="sidebar">
   
@@ -236,6 +277,19 @@
       
         |<script src="http://s11.cnzz.com/z_stat.php?id=123456789&web_id=123456789" language="JavaScript"></script>
       
+      
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共{{ totalcount(site) }}字</span>
+</div>
+      <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
     </div>
     
   </div>

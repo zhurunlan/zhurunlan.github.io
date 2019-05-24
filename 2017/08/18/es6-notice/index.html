@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="runlan.zhu">
 <meta property="og:description" content="ES6 的浏览器兼容性问题">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-02T06:05:43.310Z">
+<meta property="og:updated_time" content="2019-05-24T14:18:29.592Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ES6 的浏览器兼容性问题">
 <meta name="twitter:description" content="ES6 的浏览器兼容性问题">
@@ -106,6 +106,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="eg-ES6-Webpack-Babel"><a href="#eg-ES6-Webpack-Babel" class="headerlink" title="eg: ES6 + Webpack + Babel"></a>eg: ES6 + Webpack + Babel</h3><h3 id="下面是一些基本的开发依赖："><a href="#下面是一些基本的开发依赖：" class="headerlink" title="下面是一些基本的开发依赖："></a>下面是一些基本的开发依赖：</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="string">"babel-core"</span>: <span class="string">"~6.3.15"</span>,</span><br><span class="line">    <span class="string">"babel-loader"</span>: <span class="string">"~6.2.0"</span>,</span><br><span class="line">    <span class="string">"babel-preset-es2015"</span>: <span class="string">"~6.3.13"</span>,</span><br><span class="line">    <span class="string">"babel-preset-stage-0"</span>: <span class="string">"~6.3.13"</span>,</span><br><span class="line">    <span class="string">"babel-runtime"</span>: <span class="string">"~6.3.13"</span>,</span><br><span class="line">    <span class="string">"extract-text-webpack-plugin"</span>: <span class="string">"~0.9.1"</span>,</span><br><span class="line">    <span class="string">"less-loader"</span>: <span class="string">"~2.2.1"</span>,</span><br><span class="line">    <span class="string">"nunjucks-loader"</span>: <span class="string">"~1.0.7"</span>,</span><br><span class="line">    <span class="string">"style-loader"</span>: <span class="string">"~0.10.2"</span>,</span><br><span class="line">    <span class="string">"webpack"</span>: <span class="string">"~1.12.9"</span>,</span><br><span class="line">    <span class="string">"webpack-dev-server"</span>: <span class="string">"^1.10.1"</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h2 id="0x01-polyfill"><a href="#0x01-polyfill" class="headerlink" title="0x01 polyfill"></a>0x01 polyfill</h2><h3 id="由于-Babel-默认只转换转各种-ES2015-语法，而不转换新的-API，比如-Promise，以及-Object-assign、Array-from-这些新方法，这时我们需要提供一些-ployfill-来模拟出这样一个提供原生支持功能的浏览器环境。"><a href="#由于-Babel-默认只转换转各种-ES2015-语法，而不转换新的-API，比如-Promise，以及-Object-assign、Array-from-这些新方法，这时我们需要提供一些-ployfill-来模拟出这样一个提供原生支持功能的浏览器环境。" class="headerlink" title="由于 Babel 默认只转换转各种 ES2015 语法，而不转换新的 API，比如 Promise，以及 Object.assign、Array.from 这些新方法，这时我们需要提供一些 ployfill 来模拟出这样一个提供原生支持功能的浏览器环境。"></a>由于 Babel 默认只转换转各种 ES2015 语法，而不转换新的 API，比如 Promise，以及 Object.assign、Array.from 这些新方法，这时我们需要提供一些 ployfill 来模拟出这样一个提供原生支持功能的浏览器环境。</h3><h3 id="主要有两种方式：babel-runtime-和-babel-polyfill。"><a href="#主要有两种方式：babel-runtime-和-babel-polyfill。" class="headerlink" title="主要有两种方式：babel-runtime 和 babel-polyfill。"></a>主要有两种方式：babel-runtime 和 babel-polyfill。</h3><h3 id="babel-runtime"><a href="#babel-runtime" class="headerlink" title="babel-runtime"></a>babel-runtime</h3><h3 id="babel-runtime-的作用是模拟-ES2015-环境，包含各种分散的-polyfill-模块，我们可以在自己的模块里单独引入，比如-promise："><a href="#babel-runtime-的作用是模拟-ES2015-环境，包含各种分散的-polyfill-模块，我们可以在自己的模块里单独引入，比如-promise：" class="headerlink" title="babel-runtime 的作用是模拟 ES2015 环境，包含各种分散的 polyfill 模块，我们可以在自己的模块里单独引入，比如 promise："></a>babel-runtime 的作用是模拟 ES2015 环境，包含各种分散的 polyfill 模块，我们可以在自己的模块里单独引入，比如 promise：</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'babel-runtime/core-js/promise'</span></span><br></pre></td></tr></table></figure>
 <h2 id="它们不会在全局环境添加未实现的方法，只是这样手动引用每个-polyfill-会非常低效，我们可以借助-Runtime-transform-插件来自动化处理这一切。"><a href="#它们不会在全局环境添加未实现的方法，只是这样手动引用每个-polyfill-会非常低效，我们可以借助-Runtime-transform-插件来自动化处理这一切。" class="headerlink" title="它们不会在全局环境添加未实现的方法，只是这样手动引用每个 polyfill 会非常低效，我们可以借助 Runtime transform 插件来自动化处理这一切。"></a>它们不会在全局环境添加未实现的方法，只是这样手动引用每个 polyfill 会非常低效，我们可以借助 Runtime transform 插件来自动化处理这一切。</h2><h2 id="首先使用-npm-安装："><a href="#首先使用-npm-安装：" class="headerlink" title="首先使用 npm 安装："></a>首先使用 npm 安装：</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install babel-plugin-transform-runtime --save-dev</span><br></pre></td></tr></table></figure>
 <h2 id="然后在-webpack-配置文件的-babel-loader-增加选项："><a href="#然后在-webpack-配置文件的-babel-loader-增加选项：" class="headerlink" title="然后在 webpack 配置文件的 babel-loader 增加选项："></a>然后在 webpack 配置文件的 babel-loader 增加选项：</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">loader: [<span class="string">"babel-loader"</span>],</span><br><span class="line">query: &#123;</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="string">"transform-runtime"</span></span><br><span class="line">  ],</span><br><span class="line">  presets: [<span class="string">'es2015'</span>, <span class="string">'stage-0'</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -128,7 +129,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/08/18/es6-notice/" data-id="cjw0r7ix6000g30rjit1tdc93" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2017/08/18/es6-notice/" data-id="cjw0sb8a900027orjpsun3cyj" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6/">es6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
@@ -161,7 +162,47 @@
 
 
 
-</section>
+
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNjE3MC8xMjcwNQ==">
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+
+      if (typeof LivereTower === 'function') { return; }
+
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+  <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- 页面点击小红心 -->
+<script src="js/tctip-1.0.1.min.js"></script>
+<script type="text/javascript" src="js/clicklove.js"></script>
+<!--打赏功能-->
+<script src="js/tctip-1.0.1.min.js"></script>
+<script>
+  new tctip({
+    top: '20%',
+    button: {
+      id: 9,
+      type: 'dashang',
+    },
+    list: [
+      {
+        type: 'alipay',
+        qrImg: 'img/zhifubao.jpg'
+      }, {
+        type: 'wechat',
+        qrImg: 'img/weixin.png'
+      }
+    ]
+  }).init()
+  var todo = new leanCloud()._getTime('test');
+</script></section>
         
           <aside id="sidebar">
   
@@ -244,6 +285,19 @@
       
         |<script src="http://s11.cnzz.com/z_stat.php?id=123456789&web_id=123456789" language="JavaScript"></script>
       
+      
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共{{ totalcount(site) }}字</span>
+</div>
+      <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
     </div>
     
   </div>

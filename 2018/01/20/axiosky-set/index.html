@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="runlan.zhu">
 <meta property="og:description" content="axios解决跨域问题">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-02T06:41:55.321Z">
+<meta property="og:updated_time" content="2019-05-24T14:18:13.154Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue中axios解决跨域问题">
 <meta name="twitter:description" content="axios解决跨域问题">
@@ -105,7 +105,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1-vue中axios不支持vue-use-方式声明使用。-所以有两种方法可以解决这点："><a href="#1-vue中axios不支持vue-use-方式声明使用。-所以有两种方法可以解决这点：" class="headerlink" title="1.vue中axios不支持vue.use()方式声明使用。 所以有两种方法可以解决这点："></a>1.vue中axios不支持vue.use()方式声明使用。 所以有两种方法可以解决这点：</h2><p>第一种： 在main.js中引入axios，然后将其设置为vue原型链上的属性，这样在组件中就可以直接 this.axios使用了<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span>;</span><br><span class="line">Vue.prototype.axios=axios;</span><br></pre></td></tr></table></figure></p>
+        <h2 id="1-vue中axios不支持vue-use-方式声明使用。-所以有两种方法可以解决这点："><a href="#1-vue中axios不支持vue-use-方式声明使用。-所以有两种方法可以解决这点：" class="headerlink" title="1.vue中axios不支持vue.use()方式声明使用。 所以有两种方法可以解决这点："></a>1.vue中axios不支持vue.use()方式声明使用。 所以有两种方法可以解决这点：</h2><a id="more"></a>
+<p>第一种： 在main.js中引入axios，然后将其设置为vue原型链上的属性，这样在组件中就可以直接 this.axios使用了<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span>;</span><br><span class="line">Vue.prototype.axios=axios;</span><br></pre></td></tr></table></figure></p>
 <p>components：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.axios(&#123;</span><br><span class="line">        url:<span class="string">"a.xxx"</span>,</span><br><span class="line">        method:<span class="string">'post'</span>,</span><br><span class="line">        data:&#123;</span><br><span class="line">            id:<span class="number">3</span>,</span><br><span class="line">            name:<span class="string">'jack'</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(res);</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(err);</span><br><span class="line">    &#125;)</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 <h3 id="这里需要注意一点，就是在axios中把请求到的数据-使用this复制给data是无效的，使用箭头函数可以解决。"><a href="#这里需要注意一点，就是在axios中把请求到的数据-使用this复制给data是无效的，使用箭头函数可以解决。" class="headerlink" title="这里需要注意一点，就是在axios中把请求到的数据 使用this复制给data是无效的，使用箭头函数可以解决。"></a>这里需要注意一点，就是在axios中把请求到的数据 使用this复制给data是无效的，使用箭头函数可以解决。</h3><p>(1).vue cli脚手架前端调后端数据接口时候的本地代理跨域问题，如我在本地localhost访问接口<a href="http://10.1.5.11:8080/xxx/duty?time=2017-07-07" target="_blank" rel="noopener">http://10.1.5.11:8080/xxx/duty?time=2017-07-07</a> 14:57:22’，是要跨域的才可以访问的，如果直接访问会报 XMLHTTPRequest can not load <a href="http://10.1.5.11:8080/xxx/duty?time=2017-07-07" target="_blank" rel="noopener">http://10.1.5.11:8080/xxx/duty?time=2017-07-07</a> 14:57:22’. Response to preflight request doesn’t pass access control….<br>为什么存在跨域问题？因为这是非同源互相通讯，具体可以自己去google了解，这里只需要在webpack配置一下proxyTable就OK了，在config中找到index.js如下 ：</p>
@@ -122,7 +123,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/20/axiosky-set/" data-id="cjw0r7iwm000630rjn3jirzu7" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2018/01/20/axiosky-set/" data-id="cjw0sb8a000007orj8ivb2w2t" class="article-share-link">分享</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/axios/">axios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
@@ -155,7 +156,47 @@
 
 
 
-</section>
+
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNjE3MC8xMjcwNQ==">
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+
+      if (typeof LivereTower === 'function') { return; }
+
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+  <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- 页面点击小红心 -->
+<script src="js/tctip-1.0.1.min.js"></script>
+<script type="text/javascript" src="js/clicklove.js"></script>
+<!--打赏功能-->
+<script src="js/tctip-1.0.1.min.js"></script>
+<script>
+  new tctip({
+    top: '20%',
+    button: {
+      id: 9,
+      type: 'dashang',
+    },
+    list: [
+      {
+        type: 'alipay',
+        qrImg: 'img/zhifubao.jpg'
+      }, {
+        type: 'wechat',
+        qrImg: 'img/weixin.png'
+      }
+    ]
+  }).init()
+  var todo = new leanCloud()._getTime('test');
+</script></section>
         
           <aside id="sidebar">
   
@@ -238,6 +279,19 @@
       
         |<script src="http://s11.cnzz.com/z_stat.php?id=123456789&web_id=123456789" language="JavaScript"></script>
       
+      
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共{{ totalcount(site) }}字</span>
+</div>
+      <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
     </div>
     
   </div>
