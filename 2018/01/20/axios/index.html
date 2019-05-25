@@ -3,20 +3,20 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Hello World | 向阳花开</title>
+  <title>vue中axios解决跨域问题 | 向阳花开</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
-<meta name="keywords" content="test">
+  <meta name="description" content="axios解决跨域问题">
+<meta name="keywords" content="js,axios">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2019/05/22/hello-world/index.html">
+<meta property="og:title" content="vue中axios解决跨域问题">
+<meta property="og:url" content="http://yoursite.com/2018/01/20/axios/index.html">
 <meta property="og:site_name" content="向阳花开">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta property="og:description" content="axios解决跨域问题">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-24T14:23:31.663Z">
+<meta property="og:updated_time" content="2019-05-25T12:14:32.124Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta name="twitter:title" content="vue中axios解决跨域问题">
+<meta name="twitter:description" content="axios解决跨域问题">
   
     <link rel="alternate" href="/atom.xml" title="向阳花开" type="application/atom+xml">
   
@@ -69,12 +69,12 @@
   </div>
 </div>
 
-        <section id="main"><article id="post-hello-world" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-axios" class="wow slideInRight article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/05/22/hello-world/" class="article-date">
-  <time class="post-time" datetime="2019-05-22T13:51:22.196Z" itemprop="datePublished">
-    <span class="post-month">5月</span><br>
-    <span class="post-day">22</span>
+    <a href="/2018/01/20/axios/" class="article-date">
+  <time class="post-time" datetime="2018-01-20T03:36:08.000Z" itemprop="datePublished">
+    <span class="post-month">1月</span><br>
+    <span class="post-day">20</span>
   </time>
 </a>
    
@@ -86,21 +86,21 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      vue中axios解决跨域问题
     </h1>
   
 
         <div>
           
   <div class="article-category">
-    <a class="article-category-link" href="/categories/others/">others</a>
+    <a class="article-category-link" href="/categories/axios/">axios</a>
   </div>
 
           
               
   &nbsp; | &nbsp;
   <div class="view-box">
-    <span id="/2019/05/22/hello-world/" class="leancloud_visitors" data-flag-title="Hello World">
+    <span id="/2018/01/20/axios/" class="leancloud_visitors" data-flag-title="vue中axios解决跨域问题">
       &nbsp;阅读次数<span class="leancloud-visitors-count"></span>
     </span>
   </div>
@@ -112,24 +112,28 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<a id="more"></a>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h2 id="1-vue中axios不支持vue-use-方式声明使用。-所以有两种方法可以解决这点："><a href="#1-vue中axios不支持vue-use-方式声明使用。-所以有两种方法可以解决这点：" class="headerlink" title="1.vue中axios不支持vue.use()方式声明使用。 所以有两种方法可以解决这点："></a>1.vue中axios不支持vue.use()方式声明使用。 所以有两种方法可以解决这点：</h2><a id="more"></a>
+<p>第一种： 在main.js中引入axios，然后将其设置为vue原型链上的属性，这样在组件中就可以直接 this.axios使用了<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span>;</span><br><span class="line">Vue.prototype.axios=axios;</span><br></pre></td></tr></table></figure></p>
+<p>components：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.axios(&#123;</span><br><span class="line">        url:<span class="string">"a.xxx"</span>,</span><br><span class="line">        method:<span class="string">'post'</span>,</span><br><span class="line">        data:&#123;</span><br><span class="line">            id:<span class="number">3</span>,</span><br><span class="line">            name:<span class="string">'jack'</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    .then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(res);</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(err);</span><br><span class="line">    &#125;)</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="这里需要注意一点，就是在axios中把请求到的数据-使用this复制给data是无效的，使用箭头函数可以解决。"><a href="#这里需要注意一点，就是在axios中把请求到的数据-使用this复制给data是无效的，使用箭头函数可以解决。" class="headerlink" title="这里需要注意一点，就是在axios中把请求到的数据 使用this复制给data是无效的，使用箭头函数可以解决。"></a>这里需要注意一点，就是在axios中把请求到的数据 使用this复制给data是无效的，使用箭头函数可以解决。</h3><p>(1).vue cli脚手架前端调后端数据接口时候的本地代理跨域问题，如我在本地localhost访问接口<a href="http://10.1.5.11:8080/xxx/duty?time=2017-07-07" target="_blank" rel="noopener">http://10.1.5.11:8080/xxx/duty?time=2017-07-07</a> 14:57:22’，是要跨域的才可以访问的，如果直接访问会报 XMLHTTPRequest can not load <a href="http://10.1.5.11:8080/xxx/duty?time=2017-07-07" target="_blank" rel="noopener">http://10.1.5.11:8080/xxx/duty?time=2017-07-07</a> 14:57:22’. Response to preflight request doesn’t pass access control….<br>为什么存在跨域问题？因为这是非同源互相通讯，具体可以自己去google了解，这里只需要在webpack配置一下proxyTable就OK了，在config中找到index.js如下 ：</p>
+<p>config/index.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">dev: &#123;</span><br><span class="line">    proxyTable: &#123;</span><br><span class="line">      <span class="string">'/api'</span>: &#123;</span><br><span class="line">        target: <span class="string">'http://10.1.5.11:8080/'</span>,<span class="comment">//设置你调用的接口域名和端口号</span></span><br><span class="line">        changeOrigin: <span class="literal">true</span>,     <span class="comment">//跨域</span></span><br><span class="line">        pathRewrite: &#123;</span><br><span class="line">          <span class="string">'^/api'</span>: <span class="string">'/'</span>          <span class="comment">//这里理解成用‘/api’代替target里面的地址，后面组件中我们掉接口时直接用api代替 比如我要调用'http://10.1.5.11:8080/xxx/duty?time=2017-07-07 14:57:22'，直接写‘/api/xxx/duty?time=2017-07-07 14:57:22’即可</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure></p>
+<p>跨域成功，但是这只是开发环境（dev）中解决了跨域问题，生产环境中真正部署到服务器上如果是非同源还是存在跨域问题，<br>如我们部署的服务器端口是3001，需要前后端联调，第一步前端我们可以分生产production和开发development两种环境分别测试，<br>在config/dev.env.js和prod.env.js里也就是开发/生产环境下分别配置一下请求的地址API_HOST，<br>开发环境中我们用上面配置的代理地址api，生产环境下用正常的接口地址，所以这样配置，<br>分别在config/dev.env.js和prod.env.js两个文件中进行以下配置。</p>
+<p>config/dev.env.js：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = merge(prodEnv, &#123;</span><br><span class="line">  NODE_ENV: <span class="string">'"development"'</span>,<span class="comment">//开发环境</span></span><br><span class="line">  API_HOST:<span class="string">"/api/"</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>prod.env.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  NODE_ENV: <span class="string">'"production"'</span>,<span class="comment">//生产环境</span></span><br><span class="line">  API_HOST:<span class="string">'"http://10.1.5.11:8080/"'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当然不管是开发还是生产环境都可以直接请求<a href="http://10.1.5.11:8080//。" target="_blank" rel="noopener">http://10.1.5.11:8080//。</a><br>配置好之后测试时程序会自动判断当前是开发还是生产环境，然后自动匹配API_HOST，<br>我们在任何组件里都能用process.env.API_HOST来使用地址如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">instance.post(process.env.API_HOST+<span class="string">'user/login'</span>, <span class="keyword">this</span>.form)</span><br></pre></td></tr></table></figure>
+<p>然后第二步后端服务器配置一下cros跨域即可，就是access-control-allow-origin：*允许所有访问的意思。<br>综上：开发的环境下我们前端可以自己配置个proxy代理就能跨域了，真正的生产环境下还需要后端的配合的。某大神说：<br>此方法ie9及以下不好使，如果需要兼容，最好的办法是后端在服务器端口加个代理，效果类似开发时webpack的代理。</p>
+<p>1.axios发送get post请求问题<br>发送post请求时一般都要设置Content-Type，发送内容的类型，application/json指发送json对象但是要提前stringify一下。<br>application/xxxx-form指发送？a=b&amp;c=d格式，<br>可以用qs的方法格式化一下，qs在安装axios后会自动安装，只需要组件里import一下即可。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> postData=<span class="built_in">JSON</span>.stringify(<span class="keyword">this</span>.formCustomer);</span><br><span class="line"><span class="string">'Content-Type'</span>:<span class="string">'application/json'</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> postData=Qs.stringify(<span class="keyword">this</span>.formCustomer);<span class="comment">//过滤成？&amp;=格式</span></span><br><span class="line"><span class="string">'Content-Type'</span>:<span class="string">'application/xxxx-form'</span>&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/22/hello-world/" data-id="cjw3hb92e000ca0rj31fq7a1l" class="article-share-link">分享</a>
+      <a data-url="http://yoursite.com/2018/01/20/axios/" data-id="cjw3hb92c000ba0rjmr12dta7" class="article-share-link">分享</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/test/">test</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/axios/">axios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">js</a></li></ul>
 
     </footer>
   </div>
@@ -137,10 +141,19 @@
     
 <nav id="article-nav">
   
+    <a href="/2018/05/18/WeChatAppletWeb1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          小程序开发总结文档
+        
+      </div>
+    </a>
   
-    <a href="/2019/03/20/angular2/" id="article-nav-older" class="article-nav-link-wrap">
+  
+    <a href="/2018/01/18/axios-set/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">【Angular 入门】学习总结二</div>
+      <div class="article-nav-title">axios拦截器配置</div>
     </a>
   
 </nav>
