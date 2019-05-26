@@ -1834,6 +1834,36 @@ a.article-title:hover {
 .archive-article-date .post-day {
   font-size: 1.6em;
 }
+.archive-article-header .archive-card {
+  margin-bottom: -20px;
+}
+.archive-article-header .archive-article-date .card-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 32px;
+  float: left;
+  display: block;
+  margin-top: -2px;
+}
+.archive-article-header .archive-article-date .card-icon img {
+  width: 42px;
+  height: 42px;
+  border-radius: 32px;
+  float: left;
+  display: block;
+  margin-top: -5px;
+}
+.archive-article-header .card-body {
+  color: #666;
+  font-size: 12px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin-bottom: 2px;
+  padding: 0 18px;
+  display: inline-block;
+  margin-left: 35px;
+}
 #page-nav {
   margin: 50px auto;
   background: rgba(255,255,255,0.9);
