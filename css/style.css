@@ -1853,6 +1853,9 @@ a.article-title:hover {
   display: block;
   margin-top: -5px;
 }
+.archive-card-header .archive-article-date {
+  background: none;
+}
 .archive-article-header .card-body {
   color: #666;
   font-size: 12px;
